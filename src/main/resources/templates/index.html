@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>魚の出品一覧</title>
+</head>
+<body>
+    <h1>出品されている魚</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>魚の種類</th>
+                <th>量</th>
+                <th>価格</th>
+                <th>出品者</th>
+                <th>説明</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="listing : ${listings}">
+                <td th:text="${listing.fishType}"></td>
+                <td th:text="${listing.quantity}"></td>
+                <td th:text="${listing.price}"></td>
+                <td th:text="${listing.sellerName}"></td>
+                <td th:text="${listing.description}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <br>
+    <a href="/new">新しい魚を出品する</a>
+</body>
+</html>

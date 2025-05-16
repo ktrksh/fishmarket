@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>新しい魚の出品</title>
+</head>
+<body>
+    <h1>新しい魚を出品する</h1>
+    <form action="/listings" method="post" th:object="${fishListing}">
+        <div>
+            <label for="fishType">魚の種類:</label>
+            <input type="text" id="fishType" th:field="*{fishType}" required>
+        </div>
+        <div>
+            <label for="quantity">量:</label>
+            <input type="text" id="quantity" th:field="*{quantity}">
+        </div>
+        <div>
+            <label for="price">価格:</label>
+            <input type="text" id="price" th:field="*{price}">
+        </div>
+        <div>
+            <label for="sellerName">出品者名:</label>
+            <input type="text" id="sellerName" th:field="*{sellerName}">
+        </div>
+        <div>
+            <label for="description">説明:</label>
+            <textarea id="description" th:field="*{description}"></textarea>
+        </div>
+        <button type="submit">出品する</button>
+    </form>
+    <br>
+    <a href="/">出品一覧に戻る</a>
+</body>
+</html>
