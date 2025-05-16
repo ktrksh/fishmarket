@@ -31,6 +31,14 @@
     </header>
     <h1>出品されている魚</h1>
     <i class="fas fa-fish fish-silhouette"></i>
+    <h2>地元の風景</h2>
+    <div class="image-slider">
+      <div class="slider-container">
+        <img src="/images/IMG_7891.jpeg" alt="地元の漁港の風景1">
+        <img src="/images/IMG_8801.jpeg" alt="地元の漁港の風景2">
+        <img src="/images/IMG_8998.jpeg" alt="地元の漁港の風景3">
+      </div>
+    </div>
     <table>
       <thead>
         <tr>
@@ -53,7 +61,6 @@
     </table>
     <br />
     <a href="/new">新しい魚を出品する</a>
-    <video src="/src/main/resources/static/images/IMG_8952.mp4" width="320" height="240" controls muted loop></video>
     <script>
       function updateClock() {
         const now = new Date();
@@ -138,6 +145,40 @@
 
       // ページ読み込み時に実行
       document.addEventListener("DOMContentLoaded", fetchFishNews);
+
+      // 画像スライダー
+      const sliderContainer = document.querySelector('.slider-container');
+      let scrollAmount = 0;
+      const slideWidth = sliderContainer.querySelector('img').clientWidth;
+
+      function slideImages() {
+        scrollAmount += slideWidth;
+        if (scrollAmount >= sliderContainer.scrollWidth) {
+          scrollAmount = 0;
+        }
+        sliderContainer.scrollTo({
+          left: scrollAmount,
+          behavior: 'smooth'
+        });
+      }
+
+      setInterval(slideImages, 1000); // 1秒ごとにスライド
+
+      // スライダーのスタイル調整（必要に応じてstyle.cssに移動）
+      const slider = document.querySelector('.image-slider');
+      slider.style.overflowX = 'hidden'; // 横スクロールを隠す
+      slider.style.width = '100%'; // スライダーの幅
+
+      sliderContainer.style.display = 'flex'; // 横並びにする
+      sliderContainer.style.width = '300%'; // コンテンツ全体の幅（画像の数に応じて調整）
+      sliderContainer.style.overflowX = 'hidden'; // 横スクロールを許可
+      sliderContainer.style.scrollSnapType = 'x mandatory'; // スナップポイントを設定
+
+      sliderContainer.querySelectorAll('img').forEach(img => {
+        img.style.width = '33.33%'; // 各画像の幅（画像の数に応じて調整）
+        img.style.scrollSnapAlign = 'start'; // スナップ位置を画像の開始に設定
+        img.style.maxWidth = '33.33vw'; // 画像の最大幅をビューポートの1/3に設定
+      });
     </script>
   </body>
 </html>
