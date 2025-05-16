@@ -1,0 +1,282 @@
+/* ==========================================================================
+   1. Base & Reset
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 100%; /* Typically 16px */
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif; /* Modern font stack */
+  color: #333;
+  background-color: #f8f9fa;
+  margin: 0; /* Ensures no default browser margins */
+}
+
+/* ==========================================================================
+   2. Typography
+   ========================================================================== */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 0.75em;
+  font-weight: 600; /* Slightly bolder than default 'bold' */
+  line-height: 1.2;
+  color: #212529;
+}
+
+h1 {
+  font-size: 2.5rem;
+} /* ~40px */
+h2 {
+  font-size: 2rem;
+} /* ~32px */
+h3 {
+  font-size: 1.75rem;
+} /* ~28px */
+
+p {
+  margin-top: 0;
+  margin-bottom: 1rem; /* Consistent spacing */
+}
+
+a {
+  color: #007bff;
+  text-decoration: none;
+  transition: color 0.15s ease-in-out;
+}
+
+a:hover,
+a:focus {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   3. Layout
+   ========================================================================== */
+
+.container {
+  width: 90%;
+  max-width: 1140px; /* Common max-width for large screens */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+header.site-header {
+  background-color: #343a40;
+  color: #fff;
+  padding: 1rem 0;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header.site-header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav.main-nav ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  display: flex;
+}
+
+nav.main-nav li {
+  margin-left: 1.5rem;
+}
+
+nav.main-nav a {
+  color: #f8f9fa;
+  font-weight: 500;
+}
+
+nav.main-nav a:hover,
+nav.main-nav a:focus {
+  color: #007bff;
+  text-decoration: none;
+}
+
+/* ==========================================================================
+   4. Components
+   ========================================================================== */
+
+/* Button Component */
+.btn {
+  display: inline-block;
+  padding: 0.65em 1.25em;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+  background-color: #007bff;
+  border: 1px solid #007bff;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
+    color 0.15s ease-in-out;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: #0056b3;
+  border-color: #0056b3;
+  color: #fff;
+  text-decoration: none;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-secondary:hover,
+.btn-secondary:focus {
+  background-color: #545b62;
+  border-color: #545b62;
+}
+
+/* Card Component */
+.card {
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 0.25rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.card-title {
+  font-size: 1.5rem;
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+}
+
+/* ==========================================================================
+   5. Utility Classes
+   ========================================================================== */
+
+.text-center {
+  text-align: center !important;
+} /* Use !important judiciously for utilities */
+.text-right {
+  text-align: right !important;
+}
+.mt-1 {
+  margin-top: 1rem !important;
+}
+.mb-1 {
+  margin-bottom: 1rem !important;
+}
+.p-1 {
+  padding: 1rem !important;
+}
+
+.hidden-visually {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* ==========================================================================
+   6. Media Queries
+   ========================================================================== */
+
+/* Example: Adjust layout for tablet and smaller screens */
+@media (max-width: 768px) {
+  header.site-header .container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  nav.main-nav ul {
+    flex-direction: column;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  nav.main-nav li {
+    margin-left: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  .container {
+    width: 95%;
+  }
+}
+
+/* Example: Adjust typography for very small screens */
+@media (max-width: 480px) {
+  html {
+    font-size: 93.75%;
+  } /* ~15px */
+  h1 {
+    font-size: 2.25rem;
+  }
+  h2 {
+    font-size: 1.875rem;
+  }
+
+  .btn {
+    padding: 0.6em 1.1em;
+    font-size: 0.95rem;
+    width: 100%; /* Make buttons full-width on small screens */
+    margin-bottom: 0.5rem;
+  }
+  .btn:last-child {
+    margin-bottom: 0;
+  }
+  .fish-silhouette {
+    font-size: 2em; /* アイコンのサイズ調整 */
+    color: #888; /* アイコンの色 */
+    position: fixed; /* 画面の隅に固定 */
+    bottom: 20px; /* 下からの距離 */
+    left: 20px; /* 左からの距離 */
+    opacity: 0.6; /* 透明度 */
+    animation: swim 5s linear infinite; /* アニメーションを適用 */
+  }
+
+  @keyframes swim {
+    0% {
+      transform: translateX(0);
+      opacity: 0.6;
+    }
+    50% {
+      transform: translateX(30px);
+      opacity: 0.8;
+    }
+    100% {
+      transform: translateX(0);
+      opacity: 0.6;
+    }
+  }
+}
