@@ -1,31 +1,59 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
+  <head>
     <title>魚の出品一覧</title>
-</head>
-<body>
+  </head>
+  <body>
+    <div
+      id="digital-clock"
+      style="
+        font-size: 2em;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 10px;
+      "
+    ></div>
     <h1>出品されている魚</h1>
     <table>
-        <thead>
-            <tr>
-                <th>魚の種類</th>
-                <th>量</th>
-                <th>価格</th>
-                <th>出品者</th>
-                <th>説明</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="listing : ${listings}">
-                <td th:text="${listing.fishType}"></td>
-                <td th:text="${listing.quantity}"></td>
-                <td th:text="${listing.price}"></td>
-                <td th:text="${listing.sellerName}"></td>
-                <td th:text="${listing.description}"></td>
-            </tr>
-        </tbody>
+      <thead>
+        <tr>
+          <th>魚の種類</th>
+          <th>量</th>
+          <th>価格</th>
+          <th>出品者</th>
+          <th>説明</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="listing : ${listings}">
+          <td th:text="${listing.fishType}"></td>
+          <td th:text="${listing.quantity}"></td>
+          <td th:text="${listing.price}"></td>
+          <td th:text="${listing.sellerName}"></td>
+          <td th:text="${listing.description}"></td>
+        </tr>
+      </tbody>
     </table>
-    <br>
+    <br />
     <a href="/new">新しい魚を出品する</a>
-</body>
+    <script>
+      function updateClock() {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, "0");
+        const minutes = String(now.getMinutes()).padStart(2, "0");
+        const seconds = String(now.getSeconds()).padStart(2, "0");
+        const timeString = `${hours}:${minutes}:${seconds}`;
+        const clockDiv = document.getElementById("digital-clock");
+        if (clockDiv) {
+          clockDiv.textContent = timeString;
+        }
+      }
+
+      // 1秒ごとに更新
+      setInterval(updateClock, 1000);
+
+      // ページ読み込み時に一度実行
+      document.addEventListener("DOMContentLoaded", updateClock);
+    </script>
+  </body>
 </html>
