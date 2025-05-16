@@ -13,6 +13,10 @@
         margin-bottom: 10px;
       "
     ></div>
+    <div
+      id="weather-widget"
+      style="float: right; margin-top: 10px; margin-right: 10px"
+    ></div>
     <h1>出品されている魚</h1>
     <table>
       <thead>
@@ -54,6 +58,41 @@
 
       // ページ読み込み時に一度実行
       document.addEventListener("DOMContentLoaded", updateClock);
+      //   天気情報の取得・表示
+      function updateWeather() {
+        const apiKey = "181251587a1df048ce079e21a859fd7a"; // 
+        const cityId = 1863967; // 福岡市のCity ID
+        const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?id=${cityId}&appid=${apiKey}&units=metric&lang=ja`;
+
+        fetch(weatherUrl)
+          .then((response) => response.json())
+          .then((data) => {
+            if (data && data.weather && data.weather.length > 0) {
+              const weatherIcon = `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
+              const temperature = Math.round(data.main.temp);
+              const description = data.weather[0].description;
+
+              const weatherDiv = document.getElementById("weather-widget");
+              if (weatherDiv) {
+                weatherDiv.innerHTML = `
+            <img src="${weatherIcon}" alt="${description}">
+            <span>${temperature}°C ${description}</span>
+          `;
+              }
+            } else {
+              console.error(
+                "天気情報の取得に失敗しました: レスポンスの形式が不正です"
+              );
+            }
+          })
+          .catch((error) =>
+            console.error("天気情報の取得に失敗しました:", error)
+          );
+      }
+
+      // ページ読み込み時と定期的に更新
+      updateWeather();
+      setInterval(updateWeather, 60 * 60 * 1000); // 1時間ごとに更新
     </script>
   </body>
 </html>
