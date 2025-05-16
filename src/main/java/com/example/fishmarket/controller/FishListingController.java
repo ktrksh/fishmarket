@@ -30,6 +30,7 @@ public class FishListingController {
     @PostMapping("/listings")
     public String createListing(@ModelAttribute FishListing fishListing) {
         listings.add(fishListing);
+        System.out.println("受け取った出品情報: " + fishListing); // ← この行を追加
         return "redirect:/"; // トップページにリダイレクト
     }
 }

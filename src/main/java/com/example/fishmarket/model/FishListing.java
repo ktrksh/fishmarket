@@ -48,4 +48,15 @@ public class FishListing {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public String toString() {
+        return "FishListing{" +
+                "fishType='" + fishType + '\'' +
+                ", quantity='" + quantity + '\'' +
+                ", price='" + price + '\'' +
+                ", sellerName='" + sellerName + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
